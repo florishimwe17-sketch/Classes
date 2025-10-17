@@ -1,0 +1,206 @@
+---
+title: "Class 1"
+author: "Florence"
+date: "2025-10-16"
+output: html_document
+---
+
+```{r}
+ x <- c(0.5, 0.6)
+ age<-c(20,35,32,29)
+ summary(age)
+```
+
+```{r}
+  x <- c(0.5, 0.6)
+  age <- c(20,35,32,29)
+  summary(age)
+  age <- c(35,24,18,24)
+  mean(age)
+```
+```{r}
+ Logical
+ x <- c(TRUE, FALSE)
+ x <- c(T, F)
+```
+
+```{r}
+Character
+ x<-c("a","b","c")
+ class<-c("M","F","F","M")
+```
+
+```{r}
+ Integer
+ x<-9:29
+```
+
+```{r}
+Complex
+ x<-c(1+0i,2+4i)
+```
+Matrix and operation within matrices
+```{r}
+ x<-matrix(1:6,nrow=2,ncol=3)
+ x
+ (y<-matrix(1:6,nrow=3,ncol=2))
+ 
+  x%*%y
+```
+List
+```{r}
+x<-list(1,"a",TRUE,1+4i)
+x
+```
+```{r}
+ x<-factor(c("yes","yes","no","yes","no"))
+```
+
+```{r}
+ CreateavectorwithNAsinit
+
+ x<-c(1,2,NA,10,3)
+ is.na(x)
+      
+```
+```{r}
+ x<-c(1,2,4,"NA",5)
+ bad<-is.na(x)
+ print(bad)
+ 
+ x[!bad]
+```
+```{r}
+x<-c(1,2,NA,4,NA,5)
+ y<-c("a","b",NA,"d",NA,"f")
+ good<-complete.cases(x,y)
+ good
+ 
+ sum(c(TRUE,TRUE,FALSE,FALSE,FALSE))
+```
+Creating data frame
+```{r}
+ studentID<-c(1,2,3,4,5)
+ math_score<-c(12,17,10,9,NA)
+ gender<-c("M","F","M","M","F")
+ it_score<-c(13,18,11,10,19)
+ scoredata<-data.frame(studentID,gender,math_score,it_score)
+ scoredata
+
+View(scoredata)
+```
+
+Create dataset and read it from your computer
+
+```{r}
+data(data_class2)
+
+data_class2<-data.frame(height=numeric(0),weight=numeric(0),bmi=numeric
+ (0))
+ data_class2<-edit(data_class2)
+```
+
+```{r}
+data_class<-read.table("C:\Users\USER\Documents\R programming\Datasets\Book1.txt")
+
+ variable.names(data_class) 
+ 
+```
+
+
+ Use data set built in R
+ 
+```{r}
+data("airquality")
+variable.names(airquality)
+ str(airquality)
+```
+Exploration data analysis
+```{r}
+ data(data_class)
+data.class()
+```
+
+```{r}
+ data("iris")
+ head(iris)
+```
+ mean(iris$Petal.Length)
+```{r}
+mean(iris$Petal.Length)
+```
+```{r}
+mean(iris$Petal.Length[iris$Species=="setosa"])
+```
+```{r}
+mean(iris$Petal.Length[iris$Species=="versicolor"])
+```
+```{r}
+ mean(iris$Petal.Length[iris$Species=="virginica"])
+```
+ ##shortcut
+```{r}
+ by(iris$Petal.Length,iris$Species,mean)
+```
+```{r}
+by(iris$Petal.Length,iris$Species,sd)
+```
+```{r}
+by(iris$Petal.Length,iris$Species,summary)
+```
+Visualize the differences in continuous variables between categories using Box-and
+whisker plot
+```{r}
+ boxplot(iris$Sepal.Length~iris$Species,data=iris, main="Comparison")
+```
+ Relationship between two categorical variables
+ 
+ ucba<-data.frame(UCBAdmissions)
+ head(ucba)
+```{r}
+ucba<-data.frame(UCBAdmissions)
+ head(ucba)
+ 
+```
+```{r}
+cross<-xtabs(Freq~Gender+Admit,data=ucba)
+ (cross<-xtabs(Freq~Gender+Admit,data=ucba))
+```
+##Is there gender bias in UCBgraduate admission process?
+
+```{r}
+ prop.table(cross,2)
+```
+Simpson’s paradox
+```{r}
+cross2<-xtabs(Freq~Gender+Admit,data=ucba[ucba$Dept=="A",])
+ prop.table(cross2,1)
+```
+```{r}
+dat <- read.table(text = "
+ProdA ProdB ProdC ProdD ProdE
+1 110 50 60 70
+2 120 50 80 65
+", header = TRUE)
+
+
+ barplot(as.matrix(dat),beside=FALSE,col=c("Red","green"))
+```
+```{r}
+#barplot(as.matrix(dat),beside=TRUE,col=c("gold3","red"))
+
+ dat <- read.table(text = "A B C D E F G
+ 1 10 80 30 90 70 60 90
+ 2 20 50 70 50 40 10 40
+ 3 60 80 80 60 60 30 160
+ 4 20 40 70 80 20 10 70", header = TRUE)
+ 
+ barplot(as.matrix(dat))
+```
+Scatter Plot
+ 
+```{r}
+plot(WEIGHT~HEIGHT,data=data_class) 
+```
+ 
+
