@@ -18,28 +18,32 @@ output: html_document
   age <- c(35,24,18,24)
   mean(age)
 ```
+
+#Logical
 ```{r}
- Logical
  x <- c(TRUE, FALSE)
  x <- c(T, F)
 ```
 
+#Character
 ```{r}
-Character
  x<-c("a","b","c")
  class<-c("M","F","F","M")
 ```
 
+# Integer
 ```{r}
- Integer
+
  x<-9:29
 ```
 
+#Complex
 ```{r}
-Complex
+
  x<-c(1+0i,2+4i)
 ```
-Matrix and operation within matrices
+
+#Matrix and operation within matrices
 ```{r}
  x<-matrix(1:6,nrow=2,ncol=3)
  x
@@ -47,7 +51,8 @@ Matrix and operation within matrices
  
   x%*%y
 ```
-List
+
+#List
 ```{r}
 x<-list(1,"a",TRUE,1+4i)
 x
@@ -56,13 +61,14 @@ x
  x<-factor(c("yes","yes","no","yes","no"))
 ```
 
+#Create a vecto rwith NAs in it
 ```{r}
- CreateavectorwithNAsinit
-
  x<-c(1,2,NA,10,3)
  is.na(x)
       
 ```
+
+
 ```{r}
  x<-c(1,2,4,"NA",5)
  bad<-is.na(x)
@@ -70,6 +76,8 @@ x
  
  x[!bad]
 ```
+
+
 ```{r}
 x<-c(1,2,NA,4,NA,5)
  y<-c("a","b",NA,"d",NA,"f")
@@ -78,7 +86,8 @@ x<-c(1,2,NA,4,NA,5)
  
  sum(c(TRUE,TRUE,FALSE,FALSE,FALSE))
 ```
-Creating data frame
+
+#Creating data frame
 ```{r}
  studentID<-c(1,2,3,4,5)
  math_score<-c(12,17,10,9,NA)
@@ -90,7 +99,7 @@ Creating data frame
 View(scoredata)
 ```
 
-Create dataset and read it from your computer
+#Create dataset and read it from your computer
 
 ```{r}
 data(data_class2)
@@ -100,32 +109,61 @@ data_class2<-data.frame(height=numeric(0),weight=numeric(0),bmi=numeric
  data_class2<-edit(data_class2)
 ```
 
+#read a dataset from computer
 ```{r}
-data_class<-read.table("C:\Users\USER\Documents\R programming\Datasets\Book1.txt")
+data_class <- read.table("C:\\Users\\USER\\Documents\\R programming\\Datasets\\Book1.txt", header = TRUE)
 
- variable.names(data_class) 
- 
+variable.names(data_class)
+
 ```
 
 
- Use data set built in R
+```{r}
+ head(data_class)
+```
+
+
+```{r}
+tail(data_class)
+```
+
+```{r}
+data_class[10:20,]
+```
+
+```{r}
+summary(data_class$WEIGHT)
+```
+
+
+```{r}
+length(data_class$WEIGHT)
+```
+
+
+```{r}
+data_class[,-1]
+```
+#Use data set built in R
  
 ```{r}
 data("airquality")
 variable.names(airquality)
  str(airquality)
 ```
-Exploration data analysis
+
+#Exploration data analysis
 ```{r}
- data(data_class)
-data.class()
+data_class
 ```
+
 
 ```{r}
  data("iris")
  head(iris)
 ```
- mean(iris$Petal.Length)
+
+#mean(iris$Petal.Length)
 ```{r}
 mean(iris$Petal.Length)
 ```
@@ -138,35 +176,40 @@ mean(iris$Petal.Length[iris$Species=="versicolor"])
 ```{r}
  mean(iris$Petal.Length[iris$Species=="virginica"])
 ```
- ##shortcut
+
+#shortcut
 ```{r}
  by(iris$Petal.Length,iris$Species,mean)
 ```
+
 ```{r}
 by(iris$Petal.Length,iris$Species,sd)
 ```
+
 ```{r}
 by(iris$Petal.Length,iris$Species,summary)
 ```
-Visualize the differences in continuous variables between categories using Box-and
-whisker plot
+
+#Visualize the differences in continuous variables between categories using Box-and whisker plot
+
 ```{r}
  boxplot(iris$Sepal.Length~iris$Species,data=iris, main="Comparison")
 ```
- Relationship between two categorical variables
- 
- ucba<-data.frame(UCBAdmissions)
- head(ucba)
+
+#Relationship between two categorical variables
+
 ```{r}
 ucba<-data.frame(UCBAdmissions)
- head(ucba)
+ head(ucba) 
  
 ```
+
+
 ```{r}
 cross<-xtabs(Freq~Gender+Admit,data=ucba)
  (cross<-xtabs(Freq~Gender+Admit,data=ucba))
 ```
-##Is there gender bias in UCBgraduate admission process?
+#Is there gender bias in UCBgraduate admission process?
 
 ```{r}
  prop.table(cross,2)
@@ -176,6 +219,7 @@ Simpson’s paradox
 cross2<-xtabs(Freq~Gender+Admit,data=ucba[ucba$Dept=="A",])
  prop.table(cross2,1)
 ```
+
 ```{r}
 dat <- read.table(text = "
 ProdA ProdB ProdC ProdD ProdE
@@ -186,6 +230,8 @@ ProdA ProdB ProdC ProdD ProdE
 
  barplot(as.matrix(dat),beside=FALSE,col=c("Red","green"))
 ```
+
+
 ```{r}
 #barplot(as.matrix(dat),beside=TRUE,col=c("gold3","red"))
 
@@ -197,10 +243,104 @@ ProdA ProdB ProdC ProdD ProdE
  
  barplot(as.matrix(dat))
 ```
-Scatter Plot
+#Scatter Plot
  
 ```{r}
 plot(WEIGHT~HEIGHT,data=data_class) 
+
+
+```
+
+
+```{r}
+plot(data_class$HEIGHT,data_class$WEIGHT)
+```
+
+```{r}
+ plot(data_class[,1],data_class[,2])
 ```
  
+ 
+```{r}
+cor(data_class$HEIGHT,data_class$WEIGHT)
 
+```
+
+#Linear Models
+```{r}
+plot(WEIGHT~HEIGHT,data=data_class)
+abline(lm(WEIGHT~HEIGHT,data=data_class)$coefficient) 
+ 
+```
+
+```{r}
+data_lm<-lm(WEIGHT~HEIGHT,data=data_class)
+
+summary(data_lm) 
+
+```
+
+
+```{r}
+hist(data_class$HEIGHT)
+```
+
+
+```{r}
+ hist(data_class$WEIGHT,col = "blue")
+```
+#Linear with other line
+```{r}
+ plot(WEIGHT~HEIGHT,data=data_class)
+
+ abline(lm(WEIGHT~HEIGHT,data=data_class)$coefficient)
+ 
+ lines(lowess(data_class$HEIGHT,data_class$WEIGHT),col="blue") 
+```
+
+```{r}
+cor(data_class$HEIGHT,data_class$WEIGHT)
+```
+
+```{r}
+ model1<-lm(WEIGHT~HEIGHT,data=data_class)
+
+```
+
+#Data management
+
+#Create another Variable
+ 
+```{r}
+attach(data_class)
+
+(BMI<-WEIGHT/(HEIGHT/100)^2)
+```
+
+
+```{r}
+(BMI<-round(WEIGHT/(HEIGHT/100)^2,digit=2))
+```
+
+
+```{r}
+head(cbind(data_class,BMI),n=5)
+```
+
+
+```{r}
+new_data_class<-cbind(data_class,BMI)
+ tail(cbind(data_class,BMI),n=10)
+```
+
+#Summary of BMI
+```{r}
+ summary(BMI)
+```
+
+
+```{r}
+stem(BMI,scale=2)
+```
+ 
+ 
